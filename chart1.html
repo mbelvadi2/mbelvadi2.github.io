@@ -8,9 +8,9 @@ google.charts.load('current', {'packages':['corechart']});
  
 function drawChart() 
 {
- 	  var ssKey = "tQW2XyL0iNBeq8m6zrFuMRw";
+ 	  var ssKey = "1bmqf2L1SQzwWFngF_qcuyHrSRzP_Fdxl_6o-TduAIO8";
    	var visualization;
-    var query = new google.visualization.Query('https://docs.google.com/a/upei.ca/spreadsheets/d/'+ssKey+'&headers=1&sheet=Ebooks');
+    var query = new google.visualization.Query('http://spreadsheets.google.com/ccc?key='+ssKey+'&hl=en&headers=1&sheet=Ebooks');
     query.setQuery("SELECT A B C");
     query.send(handleSelectResponse);
 
@@ -32,6 +32,7 @@ google.setOnLoadCallback(drawChart);
 <title>My Data from a Spreadsheet</title>
 </head>
 <body>
+ <div>The intro to my page  goes here</div>
 <div id='chart_div'></div>
 </body>
 </html>
