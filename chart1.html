@@ -1,11 +1,16 @@
 <html>
 <head>
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <title>My Data from a Spreadsheet</title>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
- google.charts.load('current', {'packages':['tablet']});
-
+ google.load('chart_div', '1', {'packages':['corechart']});
+  google.load('chart_div', '1', {'packages':['table']});
+   google.load('chart_div', '1', {'packages':['barchart']});
+ google.charts.load('current', {'packages':['table']});
+ </script>
  
+<script type="text/javascript"> 
 function drawChart() 
 {
  	  var ssKey = "1bmqf2L1SQzwWFngF_qcuyHrSRzP_Fdxl_6o-TduAIO8";
@@ -29,10 +34,10 @@ function handleSelectResponse(response) {
 google.setOnLoadCallback(drawChart);
 </script>
 
-<title>My Data from a Spreadsheet</title>
+
 </head>
 <body>
- <div>The intro to my page 2 goes here</div>
+ <div>The intro to my page 3 goes here</div>
 <div id='chart_div'></div>
 </body>
 </html>
