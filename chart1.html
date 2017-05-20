@@ -11,7 +11,7 @@
       google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1bmqf2L1SQzwWFngF_qcuyHrSRzP_Fdxl_6o-TduAIO8/gviz/tq?gid=0&headers=1&tq=select%20A%2C%20B');
+  var query = new google.visualization.Query('http://spreadsheets.google.com/pub?key=pefjvshKHZ12bWp_VWpJjdQ/gviz/tq?gid=0&headers=1&tq=select%20A%2C%20B');
   query.send(handleQueryResponse);
 
     function handleQueryResponse(response) {
