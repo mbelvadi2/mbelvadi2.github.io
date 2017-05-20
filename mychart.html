@@ -3,7 +3,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages': ['table', 'map', 'corechart']});
-      google.charts.setOnLoadCallback(initialize);
+      // google.charts.setOnLoadCallback(initialize);
       function initialize() {
         // The URL of the spreadsheet to source data from.
         var query = new google.visualization.Query(
@@ -33,20 +33,9 @@
   </head>
 
   <body>
-    <table align="center">
-      <tr valign="top">
-        <td style="width: 50%;">
-        </td>
-        <td style="width: 50%;">
-          <div id="table_div"></div>
-        </td>
-      </tr>
-      <tr>
-        <td colSpan=2>
-          <div id="chart_div" style="align: center; width: 700px; height: 300px;"></div>
-        </td>
-      </tr>
-    </table>
+          <div id="table_div">Table here</div>
+
+          <div id="chart_div" style="align: center; width: 700px; height: 300px;">City chart here</div>
 
   </body>
 </html>
