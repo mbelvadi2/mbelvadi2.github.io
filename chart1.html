@@ -1,43 +1,35 @@
 <html>
-<head>
- <title>My Data from a Spreadsheet</title>
- </head>
-<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['table']}]}">
- 
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
-google.setOnLoadCallback(drawTable);
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
 
-function drawTable() {
-     var opts = {sendMethod: 'auto'};
-     var query = new google.visualization.Query('https://www.google.com/fusiontables/gvizdata?&tq=', opts);
-    
-    query.setQuery('SELECT col0 as test, col2 from 1198pzojwSFwuyeL8hsrmKYVHNLdNsB44bxecZYs0  limit 10');
-    
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
 
+function drawChart() {
+  var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1bmqf2L1SQzwWFngF_qcuyHrSRzP_Fdxl_6o-TduAIO8/gviz/tq?gid=0&headers=1&tq=select%20A%2C%20B');
   query.send(handleQueryResponse);
-}
 
-function handleQueryResponse(response) {
-    if (response.isError()) {
-        alert('Error in query: ' + response.getMessage() + ' ' +             response.getDetailedMessage());
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
         return;
-    }
-    var data = response.getDataTable();
-    var formatter = new google.visualization.DateFormat({pattern: 'yyyy'});
-    formatter.format(data, 0);
-
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data, {showRowNumber: true});
       }
 
+      var data = response.getDataTable();
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data);
+}
+</script>
+ </head>
 
-
-  
- </script>
-<body>
- <div>The intro to my page 5 goes here</div>
-      <div id="table_div"></div>
-</body>
+  <body>
+   <div id="mainbody">Testing 1</div>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
 </html>
