@@ -4,31 +4,32 @@
 <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
  google.charts.load('current', {'packages':['tablet']});
-google.setOnLoadCallback(drawChart);
+
  
 function drawChart() 
 {
-    var queryString = encodeURIComponent('SELECT *');
-    var queryWORK = new google.visualization.Query('https://docs.google.com/a/upei.ca/spreadsheets/d/1qLbm_CjENW1QQlgfYPugwQX-iT5S-CvCpDwy7-Jv0xc&headers=1&sheet=Ebooks&tq='+queryString);
+ 	  var ssKey = "tQW2XyL0iNBeq8m6zrFuMRw";
+   	var visualization;
+    var query = new google.visualization.Query('https://docs.google.com/a/upei.ca/spreadsheets/d/'+ssKey+'&headers=1&sheet=Ebooks');
+    query.setQuery("SELECT A B C");
+    query.send(handleSelectResponse);
 
-    queryWork.send(function (response) {
+
+function handleSelectResponse(response) {
   if (response.isError()) {
     alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
     return;
   }
 
   var datatable = response.getDataTable();
-  for (var i = 0; i < datatable.getNumberOfColumns(); i++) {
-          document.getElementById(datatable.getColumnLabel(i)).value =
-            (datatable.getNumberOfRows() > 0) ? datatable.getValue(0, i) : '';
-  }
   var mychart = new google.visualization.Table(document.getElementById('chart_div'));
-  var options = {'title':'My first Chart', 'width':800, 'height':800};
+  var options = {'title':'My first Chart'};
   mychart.draw(datatable, options);
 }
+google.setOnLoadCallback(drawChart);
 </script>
 
-<title>Data from a Spreadsheet</title>
+<title>My Data from a Spreadsheet</title>
 </head>
 <body>
 <div id='chart_div'></div>
