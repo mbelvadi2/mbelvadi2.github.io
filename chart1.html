@@ -11,7 +11,7 @@
       google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  var query = new google.visualization.Query('http://spreadsheets.google.com/pub?key=pefjvshKHZ12bWp_VWpJjdQ/gviz/tq?gid=0&headers=1&tq=select%20A%2C%20B');
+  var query = new google.visualization.Query('https://spreadsheets.google.com/pub?key=pefjvshKHZ12bWp_VWpJjdQ/gviz/tq?gid=0&headers=1&tq=select%20A%2C%20B');
   query.send(handleQueryResponse);
 
     function handleQueryResponse(response) {
@@ -28,7 +28,7 @@ function drawChart() {
  </head>
 
   <body>
-   <div id="mainbody">Testing 2</div>
+   <div id="mainbody">Testing 4</div>
     <!--Div that will hold the chart-->
     <div id="chart_div"></div>
   </body>
