@@ -1,43 +1,43 @@
 <html>
 <head>
  <title>My Data from a Spreadsheet</title>
- <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-google.charts.load('current', {'packages':['corechart']});
- google.load('chart_div', '1', {'packages':['corechart']});
-  google.load('chart_div', '1', {'packages':['table']});
-   google.load('chart_div', '1', {'packages':['barchart']});
- google.charts.load('current', {'packages':['table']});
- </script>
+ </head>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['table']}]}">
  
-<script type="text/javascript"> 
-function drawChart() 
-{
- 	  var ssKey = "1bmqf2L1SQzwWFngF_qcuyHrSRzP_Fdxl_6o-TduAIO8";
-   	var visualization;
-    var query = new google.visualization.Query('http://spreadsheets.google.com/ccc?key='+ssKey+'&hl=en&headers=1&gid=0');
-    // query.setQuery("SELECT A B C");
-    query.send(handleSelectResponse);
+
+google.setOnLoadCallback(drawTable);
+
+function drawTable() {
+     var opts = {sendMethod: 'auto'};
+     var query = new google.visualization.Query('https://www.google.com/fusiontables/gvizdata?&tq=', opts);
+    
+    query.setQuery('SELECT col0 as test, col2 from 1198pzojwSFwuyeL8hsrmKYVHNLdNsB44bxecZYs0  limit 10');
+    
+
+  query.send(handleQueryResponse);
 }
 
-function handleSelectResponse(response) {
-  if (response.isError()) {
-    alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-    return;
-  }
-
-  var data = response.getDataTable();
-  var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-  var options = {'title':'My first Chart'};
-  chart.draw(data, options);
-}
-google.setOnLoadCallback(drawChart);
-</script>
+function handleQueryResponse(response) {
+    if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' +             response.getDetailedMessage());
+        return;
+    }
+    var data = response.getDataTable();
+    var formatter = new google.visualization.DateFormat({pattern: 'yyyy'});
+    formatter.format(data, 0);
 
 
-</head>
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data, {showRowNumber: true});
+      }
+
+
+
+  
+ </script>
 <body>
- <div>The intro to my page 3 goes here</div>
-<div id='chart_div'></div>
+ <div>The intro to my page 5 goes here</div>
+      <div id="table_div"></div>
 </body>
 </html>
