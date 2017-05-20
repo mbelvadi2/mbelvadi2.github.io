@@ -4,9 +4,13 @@
 <script type="text/javascript">
 google.load("visualization", '1', {packages:['motionchart']});
 google.setOnLoadCallback(drawChart);
+ 
+
 function drawChart() 
 {
-    var query = new google.visualization.Query('https://docs.google.com/spreadsheet/ccc?key=0AjD9EQef28wTdHozcEd1dDRhYjhOMHVHVWR1X19IOFE&usp=sharing');
+    var queryString = encodeURIComponent('SELECT *');
+    var query = new google.visualization.Query('https://docs.google.com/a/upei.ca/spreadsheets/d/1qLbm_CjENW1QQlgfYPugwQX-iT5S-CvCpDwy7-Jv0xc/gviz/tq?gid=0&headers=1&tq='+queryString);
+    
     query.send(handleQueryResponse);
 }
 
@@ -17,8 +21,8 @@ function handleQueryResponse(response) {
   }
 
   var data = response.getDataTable();
-  var chart2 = new google.visualization.MotionChart(document.getElementById('chart_div'));
-  chart2.draw(data, {width: 600, height:300});
+  var mychart = new google.visualization.MotionChart(document.getElementById('chart_div'));
+  mychart.draw(data, {width: 600, height:300});
 }
 </script>
 
