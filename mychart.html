@@ -29,22 +29,6 @@
         var table =
             new google.visualization.Table(document.getElementById('table_div'));
         table.draw(geoData, {showRowNumber: false, width: '100%', height: '100%'});
-        var map =
-            new google.visualization.Map(document.getElementById('map_div'));
-        map.draw(geoView, {showTip: true});
-        // Set a 'select' event listener for the table.
-        // When the table is selected, we set the selection on the map.
-        google.visualization.events.addListener(table, 'select',
-            function() {
-              map.setSelection(table.getSelection());
-            });
-        // Set a 'select' event listener for the map.
-        // When the map is selected, we set the selection on the table.
-        google.visualization.events.addListener(map, 'select',
-            function() {
-              table.setSelection(map.getSelection());
-            });
-      }
     </script>
   </head>
 
@@ -52,7 +36,6 @@
     <table align="center">
       <tr valign="top">
         <td style="width: 50%;">
-          <div id="map_div" style="width: 400px; height: 300;"></div>
         </td>
         <td style="width: 50%;">
           <div id="table_div"></div>
