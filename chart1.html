@@ -1,30 +1,30 @@
 <html>
 <head>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
- // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages':['corechart']});
-
+ google.charts.load('current', {'packages':['tablet']});
 google.setOnLoadCallback(drawChart);
  
-
 function drawChart() 
 {
     var queryString = encodeURIComponent('SELECT *');
-    var query = new google.visualization.Query('https://docs.google.com/a/upei.ca/spreadsheets/d/1qLbm_CjENW1QQlgfYPugwQX-iT5S-CvCpDwy7-Jv0xc/gviz/tq?gid=0&headers=1&sheet=Ebooks&tq='+queryString);
-    
-    query.send(handleQueryResponse);
-}
+    var queryWORK = new google.visualization.Query('https://docs.google.com/a/upei.ca/spreadsheets/d/1qLbm_CjENW1QQlgfYPugwQX-iT5S-CvCpDwy7-Jv0xc&headers=1&sheet=Ebooks&tq='+queryString);
 
-function handleQueryResponse(response) {
+    queryWork.send(function (response) {
   if (response.isError()) {
     alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
     return;
   }
 
-  var data = response.getDataTable();
-  var mychart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-  mychart.draw(data, {width: 600, height:300});
+  var datatable = response.getDataTable();
+  for (var i = 0; i < datatable.getNumberOfColumns(); i++) {
+          document.getElementById(datatable.getColumnLabel(i)).value =
+            (datatable.getNumberOfRows() > 0) ? datatable.getValue(0, i) : '';
+  }
+  var mychart = new google.visualization.Table(document.getElementById('chart_div'));
+  var options = {'title':'My first Chart', 'width':800, 'height':800};
+  mychart.draw(datatable, options);
 }
 </script>
 
