@@ -1,0 +1,30 @@
+<html>
+<head>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load("visualization", '1', {packages:['motionchart']});
+google.setOnLoadCallback(drawChart);
+function drawChart() 
+{
+    var query = new google.visualization.Query('https://docs.google.com/spreadsheet/ccc?key=0AjD9EQef28wTdHozcEd1dDRhYjhOMHVHVWR1X19IOFE&usp=sharing');
+    query.send(handleQueryResponse);
+}
+
+function handleQueryResponse(response) {
+  if (response.isError()) {
+    alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+    return;
+  }
+
+  var data = response.getDataTable();
+  var chart2 = new google.visualization.MotionChart(document.getElementById('chart_div'));
+  chart2.draw(data, {width: 600, height:300});
+}
+</script>
+
+<title>Data from a Spreadsheet</title>
+</head>
+<body>
+<div id='chart_div'></div>
+</body>
+</html>
