@@ -21,15 +21,15 @@ function drawChart() {
       }
 
       var data = response.getDataTable();
-      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
       chart.draw(data);
 }
 </script>
  </head>
 
   <body>
-   <div id="mainbody">Testing 1</div>
-    <!--Div that will hold the pie chart-->
+   <div id="mainbody">Testing 2</div>
+    <!--Div that will hold the chart-->
     <div id="chart_div"></div>
   </body>
 </html>
