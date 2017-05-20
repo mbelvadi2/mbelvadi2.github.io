@@ -10,10 +10,10 @@ function drawChart()
 {
  	  var ssKey = "1bmqf2L1SQzwWFngF_qcuyHrSRzP_Fdxl_6o-TduAIO8";
    	var visualization;
-    var query = new google.visualization.Query('http://spreadsheets.google.com/ccc?key='+ssKey+'&hl=en&headers=1&sheet=Ebooks');
-    query.setQuery("SELECT A B C");
+    var query = new google.visualization.Query('http://spreadsheets.google.com/ccc?key='+ssKey+'&hl=en&headers=1&gid=0');
+    // query.setQuery("SELECT A B C");
     query.send(handleSelectResponse);
-
+}
 
 function handleSelectResponse(response) {
   if (response.isError()) {
@@ -21,10 +21,10 @@ function handleSelectResponse(response) {
     return;
   }
 
-  var datatable = response.getDataTable();
-  var mychart = new google.visualization.Table(document.getElementById('chart_div'));
+  var data = response.getDataTable();
+  var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
   var options = {'title':'My first Chart'};
-  mychart.draw(datatable, options);
+  chart.draw(data, options);
 }
 google.setOnLoadCallback(drawChart);
 </script>
